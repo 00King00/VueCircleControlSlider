@@ -3,12 +3,13 @@ export default class CircleState {
     this.steps = steps
     this.offset = offset
     this.currentStepIndex = 0
-    for (let stepIndex in this.steps) {
-      if (this.steps[stepIndex] === initialValue) {
-        this.currentStepIndex = stepIndex
-        break
-      }
-    }
+    // for (let stepIndex in this.steps) {
+    //   if (this.steps[stepIndex] === initialValue) {
+    //     this.currentStepIndex = stepIndex
+    //     break
+    //   }
+    // }
+    this.currentStepIndex = this.steps.findIndex((v,i) => i === initialValue)
     this.firstStep = this.steps[0]
     this.length = this.steps.length - 1
     this.lastStep = this.steps[this.length]

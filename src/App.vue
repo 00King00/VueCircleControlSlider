@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-   <CircleControler  ></CircleControler>
+   <CircleControler></CircleControler>
   </div>
 </template>
 
@@ -15,8 +15,5 @@ export default {
 </script>
 
 <style>
-#app{
-  text-align: center;
-  padding: 50px;
-}
+
 </style>

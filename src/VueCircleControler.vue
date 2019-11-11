@@ -61,10 +61,9 @@ export default {
     disabled:{ type: Boolean, required: false, default: false }
   },
   created () {
+
     this.stepsCount = 1 + (this.max - this.min) / this.stepSize
-    this.steps = Array.from({
-      length: this.stepsCount
-    }, (_, i) => this.min + i * this.stepSize)
+    this.steps = Array.from({length: this.stepsCount}, (_, i) => this.min + i * this.stepSize)
 
     this.circleState = new CircleState(this.steps, this.startAngleOffset, this.value)
     this.angle = this.circleState.angleValue
@@ -173,6 +172,7 @@ export default {
       this.angle = this.circleState.angleValue
       this.currentStepValue = this.circleState.currentStep
       this.$emit('input', this.currentStepValue)
+       
     },
     updateFromPropValue (value) {
       let stepValue = this.fitToStep(value)
@@ -233,8 +233,6 @@ export default {
   }
   svg {
     overflow: visible;
-    height: 100%;
-    width: 100%;
     circle{
       cursor: pointer;
     }
