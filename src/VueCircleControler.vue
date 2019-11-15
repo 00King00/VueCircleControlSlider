@@ -20,7 +20,7 @@
 import TouchPosition from './helpers/touch_position.js'
 import CircleState from './helpers/circle_state.js'
 export default {
-  name: 'CircleControler',
+  name: 'VueCircleControler',
    data () {
     return {
       steps: null,
