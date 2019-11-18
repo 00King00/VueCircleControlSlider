@@ -3,7 +3,6 @@ export default class TouchPosition {
     this.containerElement = containerElement
     this.sliderRadius = sliderRadius
     this.sliderTolerance = sliderTolerance
-    //this.setNewPosition({ x: 0, y: 0 })
   }
 
   setNewPosition (e) {
@@ -16,18 +15,12 @@ export default class TouchPosition {
     
   }
 
-  calcAngleDegrees(x, y) {
-    return Math.atan2(y - this.center, x - this.center) * 180 / Math.PI;
-  }  //**
+  // calcAngleDegrees(x, y) {
+  //   return Math.atan2(y - this.center, x - this.center) * 180 / Math.PI;
+  // }  //**
 
   get sliderAngle () {
-    console.log(( Math.PI * 3 / 2) % (Math.PI * 2));
-    console.log(this.relativeY - this.center);
-    console.log(this.relativeX - this.center);
-    
     return (Math.atan2(this.relativeY - this.center, this.relativeX - this.center) + Math.PI * 3 / 2) % (Math.PI * 2)
-    
-    
   }
   // get sliderAngele(){
   //   return this.calcAngleDegrees(this.relativeX, this.relativeY)
