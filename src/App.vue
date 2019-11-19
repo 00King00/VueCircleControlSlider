@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-   <!-- <CircleControler></CircleControler> -->
-   <test :value="cpValue"></test>
+   <!-- <CircleControler :value="cpValue" offKnob></CircleControler> -->
+   <test :value="cpValue" offKnob dial></test>
    <input type="range" min="0" max="100" v-model="value">
   </div>
 </template>

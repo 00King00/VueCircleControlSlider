@@ -1,8 +1,9 @@
 export default class TouchPosition{
-    constructor(svgElement, radius, circleCenter){
+    constructor(svgElement, radius, circleCenter, startAngleOffset){
         this.svgElement = svgElement
         this.radius = radius
         this.circleCenter = circleCenter
+        this.startAngleOffset = startAngleOffset
     }
     setNewPosition (e) {
         const dimensions = this.svgElement.getBoundingClientRect()
@@ -14,6 +15,7 @@ export default class TouchPosition{
         this.rightTriangleSideY = this.center - this.relativeY
         console.log("x "+this.relativeX +" y "+this.relativeY)
         console.log("rightTriangleSideX: " + this.rightTriangleSideX + "rightTriangleSideY: " + this.rightTriangleSideY)
+        return this
         
       }
     calcAngleDegrees(x, y){
@@ -24,7 +26,9 @@ export default class TouchPosition{
           }
     }
 
-    get getAngele(){
-        return this.calcAngleDegrees(this.rightTriangleSideX, this.rightTriangleSideY)
+    get getAngle(){
+      const deltaAngle = 360 - this.startAngleOffset - 3;
+      const angle = this.calcAngleDegrees(this.rightTriangleSideX, this.rightTriangleSideY)
+        return angle > deltaAngle ? angle - this.startAngleOffset : angle + deltaAngle
     }
 }

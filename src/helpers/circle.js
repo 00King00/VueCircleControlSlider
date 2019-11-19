@@ -1,5 +1,5 @@
 export default class CircleState {
-    constructor (stepsArray, initialValue, radius, center, offset=0) {
+    constructor (stepsArray, initialValue, radius, center, offset) {
       this.stepsArray = stepsArray
       this.offset = offset
       this.currentStepIndex = 0
@@ -20,17 +20,12 @@ export default class CircleState {
     get angleUnit(){ return 365/this.stepsQuantity }
 
     get currentStep () { return this.stepsArray[this.currentStepIndex] }
-    convertValueToAngle (val) { return this.angleUnit * val}
-    getPositionX(angle){
-      console.log(Math.cos(angle*this.convertedDegreesToRadians));
-      
-      return this.center + this.radius*Math.cos(angle*this.convertedDegreesToRadians) - 0.00001
+    convertValueToAngle (val) {
+      const corectAngle = this.angleUnit * val;
+      return corectAngle > 360 ? 360-0.00001 : corectAngle
     }
-    getPositionY(angle){
-      console.log(Math.sin(angle*this.convertedDegreesToRadians));
-      
-      return this.center + this.radius*Math.sin(angle*this.convertedDegreesToRadians) - 0.00001
-    }
+    getPositionX(angle){ return this.center + this.radius*Math.cos((angle+this.offset)*this.convertedDegreesToRadians) - 0.00001 }
+    getPositionY(angle){ return this.center + this.radius*Math.sin((angle+this.offset)*this.convertedDegreesToRadians) - 0.00001 }
   
    
   }
