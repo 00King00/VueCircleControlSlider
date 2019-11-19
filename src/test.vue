@@ -31,6 +31,8 @@ export default {
       mousePressed: false,
       circleState: null,
       mousemoveTicks: 0,
+      angleFlag: true,
+      valueReflect: null,
     }
   },
   props: {
@@ -77,12 +79,22 @@ export default {
      
   },
   computed: {
+    // cpValue(){
+    //   //return this
+    // },
     cpKnobBorderColor(){ return this.knobBorderColor !== '#2196F3' ? this.knobBorderColor : this.progressColor; },
     shiftX(){ return this.currentStepValue >= 100 ? 17 : this.currentStepValue > 9 ? 11 : 6 },
     circleSiftX(){ return this.currentStepValue == 5  ? 1 : this.currentStepValue == 15 ? -1 :0 },
     circleSiftY(){ return this.currentStepValue == 0  ? -1 : this.currentStepValue == 10 ? 1 :0 },
     cpCenter () { return this.size / 2 },
-    cpAngle(){return this.circleState.convertValueToAngle(this.value)},
+    cpAngle(){
+      if(this.angleFlag){
+        return this.circleState.convertValueToAngle(this.value)
+      }else{
+        return 0
+      }
+    },
+     
     cpPathDirection () { return this.cpAngle > 180 ? 1 : 0 },
     cpPathX () { return this.circleState.getPositionX(this.cpAngle) },
     cpPathY () { return this.circleState.getPositionY(this.cpAngle) },
@@ -100,7 +112,11 @@ export default {
     handleClick (e) {
       if (this.disabled) return false
       const angle = this.touchPosition.setNewPosition(e).getAngle
-      console.log(angle);
+      const value = this.circleState.converAngleToValue(angle)
+      this.valueReflect = value
+      this.angleFlag = false
+      console.log("val "+value);
+      console.log("angle "+angle);
       
     },
     // handleMouseDown (e) {
