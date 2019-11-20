@@ -30,11 +30,14 @@ export default class TouchPosition{
       const deltaAngle = 360 - this.startAngleOffset;
       //360-45=315
       const angle = this.calcAngleDegrees(this.rightTriangleSideX, this.rightTriangleSideY)
-      console.log("A"+angle);
+      //console.log("deltaA "+deltaAngle);
+      
+      //console.log("A"+angle);
       
       const extraAngle = this.startAngleOffset + angle - this.startAngleOffset
+
       if(angle<this.startAngleOffset && deltaAngle){
-        return Math.ceil(270+extraAngle)
+        return Math.ceil(deltaAngle+extraAngle)
       }else {
         console.log(Math.ceil(angle-this.startAngleOffset));
         return angle-this.startAngleOffset

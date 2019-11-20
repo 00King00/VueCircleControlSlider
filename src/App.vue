@@ -1,14 +1,12 @@
 <template>
   <div id="app">
-   <!-- <CircleControler :value="cpValue" offKnob></CircleControler> -->
-   <test :value="cpValue" offKnob dial :startAngleOffset="90" :size="200"></test>
+   <vue-circle-controler :value="cpValue"  dial :startAngleOffset="90" ></vue-circle-controler>
    <input type="range" min="0" max="100" v-model="value">
   </div>
 </template>
 
 <script>
-//import CircleControler from './VueCircleControler'
-import test from './test'
+import VueCircleControler from './VueCircleControler'
 export default {
   name: 'app',
   data(){
@@ -21,8 +19,7 @@ export default {
     cpValue(){ return +this.value}
   },
   components: {
-    //CircleControler
-    test
+    VueCircleControler
   }
 }
 </script>
