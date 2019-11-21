@@ -12,7 +12,7 @@ export default class CircleState {
       //     break
       //   }
       // }
-      this.currentStepIndex = this.stepsArray.findIndex((v,i) => i === initialValue)
+      this.currentStepIndex = this.stepsArray.findIndex((v,i) => v === initialValue)
       this.firstStep = this.stepsArray[0]
       this.stepsQuantity = this.stepsArray.length - 1
       this.lastStep = this.stepsArray[this.stepsQuantity]

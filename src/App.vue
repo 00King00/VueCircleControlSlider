@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-   <vue-circle-controler :value="cpValue"  dial :startAngleOffset="90" ></vue-circle-controler>
-   <input type="range" min="0" max="100" v-model="value">
+   <vue-circle-controler> </vue-circle-controler>
+   <!-- <input type="range" min="-30" max="30" v-model="value"> -->
   </div>
 </template>
 
@@ -11,7 +11,7 @@ export default {
   name: 'app',
   data(){
     return{
-      value: 0
+      value: -30
     }
     
   },

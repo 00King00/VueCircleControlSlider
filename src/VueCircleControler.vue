@@ -21,7 +21,6 @@
 
 import TouchPosition from './helpers/touch.js'
 import CircleState from './helpers/circle.js'
-import { log } from 'util'
 export default {
   name: 'vue-circle-controler',
    data () {
@@ -29,7 +28,6 @@ export default {
       steps: null,
       stepsCount: null,
       radius: 0,
-      angle: 0,
       circleState: null,
       valueReflect: this.value,
     }
@@ -43,7 +41,7 @@ export default {
     knobBorderWith:{ type: Number, required: false, default: 3 },
     offKnobNumber:{ type: Boolean, required: false, default: false },
     startAngleOffset: { type: Number, required: false, default: 90 },
-    value: { type: Number, required: false, default: 0},
+    value: { type: Number, required: false, default: 20},
     size: { type: Number, required: false, default: 200},
     stepSize: { type: Number, required: false, default: 1},
     min: { type: Number, required: false, default: 0 },
@@ -59,17 +57,10 @@ export default {
     disabled:{ type: Boolean, required: false, default: false }
   },
   created () {
-
-    this.stepsCount = 1 + (this.max - this.min) / this.stepSize
-    this.steps = Array.from({length: this.stepsCount}, (_, i) => this.min + i * this.stepSize)
-    let maxCurveWidth = Math.max(this.circleWidth, this.progressWidth)
-    this.radius = (this.size / 2) - Math.max(maxCurveWidth, this.cpKnobRadius * 2) / 2
-
-    this.circleState = new CircleState(this.steps, this.value, this.radius, this.size/2, this.startAngleOffset)
-    
+    this.updateInCreated()
   },
   mounted () {
-    this.touchPosition = new TouchPosition(this.$refs._svg, this.radius, this.radius / 2, this.startAngleOffset)
+    this.updateInMounted()
     if(this.offKnobNumber){
         this.knobColor = this.progressColor;
         this.knobBorderColor = this.progressColor;
@@ -97,12 +88,19 @@ export default {
     cpPathD () {return `M${this.cpStartPositionX} ${this.cpStartPositionY} A ${this.radius} ${this.radius} 0 ${this.cpPathDirection} 1 ${this.cpPathX} ${this.cpPathY} `}
   },
   methods: {
+    updateInCreated(){
+      this.stepsCount = 1 + (this.max - this.min) / this.stepSize
+      this.steps = Array.from({length: this.stepsCount}, (_, i) => this.min + i * this.stepSize)
+      let maxCurveWidth = Math.max(this.circleWidth, this.progressWidth)
+      this.radius = (this.size / 2) - Math.max(maxCurveWidth, this.cpKnobRadius * 2) / 2
+      this.circleState = new CircleState(this.steps, this.value, this.radius, this.size/2, this.startAngleOffset)
+    },
+    updateInMounted(){ this.touchPosition = new TouchPosition(this.$refs._svg, this.radius, this.radius/2, this.startAngleOffset) },
     updateValue(e){
       if (this.disabled) return false
       const angle = this.touchPosition.setNewPosition(e).getAngle
       const value = this.circleState.converAngleToValue(angle)
       this.valueReflect = value
-      this.angleFlag = false
     },
     handleClick (e) { this.updateValue(e) },
     handleTouchMove (e) { this.updateValue(e) },
@@ -118,8 +116,14 @@ export default {
     
   },
   watch: {
-    value (val) {
-      this.valueReflect = val
+    value (v) { this.valueReflect = v },
+    size(v){
+      this.updateInCreated()
+      this.updateInMounted()
+    },
+    startAngleOffset(){ 
+      this.updateInCreated()
+      this.updateInMounted()
     },
     offKnobNumber(v){
         if(v === true){
