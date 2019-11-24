@@ -3,8 +3,7 @@
     <svg :width="size + 'px'" :height="size + 'px'" :viewBox="'0 0 ' + size + ' ' + size" ref="_svg"
       @click="handleClick"
       @tochmove="handleTouchMove"
-      @mousedown.prevent="handleMouseDown"
-      
+      @mousedown.prevent="handleMouseDown"  
     >
       <g>
         <circle :stroke="circleColor" fill="none" :stroke-width="circleWidth" :cx="cpCenter" :cy="cpCenter" :r="radius"></circle>
@@ -19,8 +18,8 @@
 
 <script>
 
-import TouchPosition from './helpers/touch.js'
-import CircleState from './helpers/circle.js'
+import TouchPosition from './helpers/touch_position.js'
+import CircleState from './helpers/circle_state.js'
 export default {
   name: 'vue-circle-controler',
    data () {
@@ -41,7 +40,7 @@ export default {
     knobBorderWith:{ type: Number, required: false, default: 3 },
     offKnobNumber:{ type: Boolean, required: false, default: false },
     startAngleOffset: { type: Number, required: false, default: 90 },
-    value: { type: Number, required: false, default: 20},
+    value: { type: Number, required: false, default: 0},
     size: { type: Number, required: false, default: 200},
     stepSize: { type: Number, required: false, default: 1},
     min: { type: Number, required: false, default: 0 },
@@ -98,7 +97,7 @@ export default {
     updateInMounted(){ this.touchPosition = new TouchPosition(this.$refs._svg, this.radius, this.radius/2, this.startAngleOffset) },
     updateValue(e){
       if (this.disabled) return false
-      const angle = this.touchPosition.setNewPosition(e).getAngle
+      const angle = this.touchPosition.setNewPosition(e).getAngle 
       const value = this.circleState.converAngleToValue(angle)
       this.valueReflect = value
     },
@@ -149,7 +148,7 @@ export default {
   }
   svg {
     overflow: visible;
-    circle{
+    circle, path{
       cursor: pointer;
     }
     text.knob-text{

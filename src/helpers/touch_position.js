@@ -1,33 +1,39 @@
-export default class TouchPosition {
-  constructor (containerElement, sliderRadius, sliderTolerance) {
-    this.containerElement = containerElement
-    this.sliderRadius = sliderRadius
-    this.sliderTolerance = sliderTolerance
-  }
+export default class TouchPosition{
+    constructor(svgElement, radius, circleCenter, startAngleOffset){
+        this.svgElement = svgElement
+        this.radius = radius
+        this.circleCenter = circleCenter
+        this.startAngleOffset = startAngleOffset
+    }
+    setNewPosition (e) {
+        const dimensions = this.svgElement.getBoundingClientRect()
+        const size = dimensions.width
+        this.center = size / 2
+        this.relativeX = e.clientX - dimensions.left
+        this.relativeY = e.clientY - dimensions.top
+        this.rightTriangleSideX = -this.center + this.relativeX
+        this.rightTriangleSideY = this.center - this.relativeY
+        return this
+        
+      }
+    calcAngleDegrees(x, y){
+      if(y>0){
+        return Math.abs(Math.atan2(y, x) * 180 / Math.PI - 360 )
+      } else {
+        return Math.abs(Math.atan2(y, x) * 180 / Math.PI);
+      }
+    }
 
-  setNewPosition (e) {
-    const dimensions = this.containerElement.getBoundingClientRect()
-    const size = dimensions.width
-    this.center = size / 2
-    this.relativeX = e.clientX - dimensions.left
-    this.relativeY = e.clientY - dimensions.top
-    console.log("x "+this.relativeX +" y "+this.relativeY)
-    
-  }
+    get getAngle(){
+      const deltaAngle = 360 - this.startAngleOffset;
+      const angle = this.calcAngleDegrees(this.rightTriangleSideX, this.rightTriangleSideY) 
+      const extraAngle = this.startAngleOffset + angle - this.startAngleOffset
 
-  // calcAngleDegrees(x, y) {
-  //   return Math.atan2(y - this.center, x - this.center) * 180 / Math.PI;
-  // }  //**
-
-  get sliderAngle () {
-    return (Math.atan2(this.relativeY - this.center, this.relativeX - this.center) + Math.PI * 3 / 2) % (Math.PI * 2)
-  }
-  // get sliderAngele(){
-  //   return this.calcAngleDegrees(this.relativeX, this.relativeY)
-  // }
-
-  get isTouchWithinSliderRange () {
-    const touchOffset = Math.sqrt(Math.pow(Math.abs(this.relativeX - this.center), 2) + Math.pow(Math.abs(this.relativeY - this.center), 2));
-    return Math.abs(touchOffset - this.sliderRadius) <= this.sliderTolerance
-  }
+      if(angle<this.startAngleOffset && deltaAngle){
+        return Math.ceil(deltaAngle+extraAngle)
+      }else {
+        return angle-this.startAngleOffset
+      }
+       
+    }
 }

@@ -1,47 +1,37 @@
 export default class CircleState {
-  constructor (steps, offset, initialValue) {
-    this.steps = steps
-    this.offset = offset
-    this.currentStepIndex = 0
-    // for (let stepIndex in this.steps) {
-    //   if (this.steps[stepIndex] === initialValue) {
-    //     this.currentStepIndex = stepIndex
-    //     break
-    //   }
-    // }
-    this.currentStepIndex = this.steps.findIndex((v,i) => i === initialValue)
-    this.firstStep = this.steps[0]
-    this.length = this.steps.length - 1
-    this.lastStep = this.steps[this.length]
-  }
-
-  get angleUnit () {
-    return (Math.PI * 2 - this.offset) / this.length
-  }
-
-  get angleValue () {
-    return (Math.min(
-      this.offset + this.angleUnit * this.currentStepIndex,
-      Math.PI * 2 - Number.EPSILON
-    )) - 0.00001 // correct for 100% value
-  }
-
-  get currentStep () {
-    return this.steps[this.currentStepIndex]
-  }
-
-  updateCurrentStepFromValue (value) {
-    for (let i = 0; i < this.length; i++) {
-      if (value <= this.steps[i]) {
-        this.currentStepIndex = i
-        return
-      }
+    constructor (stepsArray, initialValue, radius, center, offset) {
+      this.stepsArray = stepsArray
+      this.offset = offset
+      this.currentStepIndex = 0
+      this.radius = radius
+      this.center = center
+      this.convertedDegreesToRadians = Math.PI/180
+      this.currentStepIndex = this.stepsArray.findIndex((v,i) => v === initialValue)
+      this.firstStep = this.stepsArray[0]
+      this.stepsQuantity = this.stepsArray.length - 1
+      this.lastStep = this.stepsArray[this.stepsQuantity]
+      this.convertValueToAngle(initialValue)
     }
-    this.currentStepIndex = this.length
-  }
+    get angleUnit(){ return 365/this.stepsQuantity }
 
-  updateCurrentStepFromAngle (angle) {
-    const stepIndex = Math.round((angle - this.offset) / this.angleUnit)
-    this.currentStepIndex = Math.min(Math.max(stepIndex, 0), this.length)
+    get currentStep () { return this.stepsArray[this.currentStepIndex] }
+   
+    convertValueToAngle (val) {
+      for (let i = 0; i < this.stepsQuantity; i++) {
+        if (val == this.stepsArray[i]) {
+          this.currentStepIndex = i
+          break
+        }
+      }
+       
+      const corectAngle = this.angleUnit *  this.currentStepIndex;
+     
+      return corectAngle > 360 ? 360-0.05001 : corectAngle
+    }
+    converAngleToValue(angle){ return angle >=358 ? this.lastStep : this.stepsArray[Math.ceil(angle/(this.angleUnit))] }
+    getPositionX(angle){ return this.center + this.radius*Math.cos((angle+this.offset)*this.convertedDegreesToRadians) - 0.00001 }
+    getPositionY(angle){ return this.center + this.radius*Math.sin((angle+this.offset)*this.convertedDegreesToRadians) - 0.00001 }
+  
+   
   }
-}
+  
