@@ -14,7 +14,6 @@ export default class TouchPosition{
         this.rightTriangleSideX = -this.center + this.relativeX
         this.rightTriangleSideY = this.center - this.relativeY
         return this
-        
       }
     calcAngleDegrees(x, y){
       if(y>0){
