@@ -20,6 +20,7 @@
 
 import TouchPosition from './helpers/touch_position.js'
 import CircleState from './helpers/circle_state.js'
+import { longStackSupport } from 'q'
 export default {
   name: 'vue-circle-controler',
    data () {
@@ -32,6 +33,7 @@ export default {
     }
   },
   props: {
+    ms:{type: Number, required: false, default: 500},
     dialTextColor:{ type: String, required: false, default: 'black' },
     offKnob:{ type: Boolean, required: false, default: false },
     dial:{ type: Boolean, required: false, default: false },
@@ -95,11 +97,26 @@ export default {
       this.circleState = new CircleState(this.steps, this.value, this.radius, this.size/2, this.startAngleOffset)
     },
     updateInMounted(){ this.touchPosition = new TouchPosition(this.$refs._svg, this.radius, this.radius/2, this.startAngleOffset) },
+    async animate(from, to, ms=500){
+      while(await new Promise (resolve => {
+        setTimeout(()=>{
+            if(from < to){
+              resolve(from++)
+            }else{resolve(from--)}
+           
+        }, ms/this.stepsCount)
+      }) !== to){
+        this.valueReflect = from
+      }
+    },
     updateValue(e){
       if (this.disabled) return false
       const angle = this.touchPosition.setNewPosition(e).getAngle 
       const value = this.circleState.converAngleToValue(angle)
-      this.valueReflect = value
+      console.log(value);
+      
+      e.type === 'click' ? this.animate(this.valueReflect, value, this.ms) : this.valueReflect = value
+
     },
     handleClick (e) { this.updateValue(e) },
     handleTouchMove (e) { this.updateValue(e) },
