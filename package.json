@@ -1,25 +1,30 @@
 {
-  "name": "vue-circle-controler",
-  "description": "Circle Controler component for Vue.js",
+  "name": "vue-circle-control-slider",
+  "description": "Circle Control Slider component for Vue.js based on svg view",
   "author": {
     "name": "Vasyl Bilous",
     "email": "mr.1bilous@gmail.com"
   },
-  "version": "1.0.0",
+  "version": "1.0.1",
   "keywords": [
     "vue",
     "vuejs",
     "plugin",
     "slider",
-    "circle"
+    "circle",
+    "circle-controler",
+    "slider-controler",
+    "vue-circle-control-slider",
+    "vue-slider",
+    "vue-circle"
   ],
   "scripts": {
     "serve": "vue-cli-service serve --open",
     "build": "vue-cli-service build",
-    "build-bundle": "vue-cli-service build --target lib --name VueCircleControler ./src/index.js",
+    "build-bundle": "vue-cli-service build --target lib --name VueCircleControlSlider ./src/index.js",
     "lint": "vue-cli-service lint"
   },
-  "main": "./dist/VueCircleControler.common.js",
+  "main": "./dist/VueCircleControlSlider.common.js",
   "files": [
     "dist/*",
     "src/*",

@@ -15,14 +15,11 @@
     </svg>
   </div>
 </template>
-
 <script>
-
 import TouchPosition from './helpers/touch_position.js'
 import CircleState from './helpers/circle_state.js'
-import { longStackSupport } from 'q'
 export default {
-  name: 'vue-circle-controler',
+  name: 'VueCircleControlSlider',
    data () {
     return {
       steps: null,
@@ -112,9 +109,8 @@ export default {
     updateValue(e){
       if (this.disabled) return false
       const angle = this.touchPosition.setNewPosition(e).getAngle 
-      const value = this.circleState.converAngleToValue(angle)
-      console.log(value);
-      
+      const value = this.circleState.converAngleToValue(angle) 
+      this.$emit("value", value) 
       e.type === 'click' ? this.animate(this.valueReflect, value, this.ms) : this.valueReflect = value
 
     },
@@ -132,7 +128,7 @@ export default {
     
   },
   watch: {
-    value (v) { this.valueReflect = v },
+    value (v){ this.valueReflect = v },
     size(v){
       this.updateInCreated()
       this.updateInMounted()
