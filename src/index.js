@@ -1,16 +1,16 @@
-import VueCircleControler from "./VueCircleControler.vue";
+import VueCircleControlSlider from "./VueCircleControlSlider.vue";
 
 // Install the components
 export function install (Vue){
-    Vue.component('VueCircleControler', VueCircleControler);
+    Vue.component('VueCircleControlSlider', VueCircleControlSlider);
 }
 
 // Expose the components
-export default VueCircleControler;
+export default VueCircleControlSlider;
 
 
 // Auto-install
-let GlobalVue = null
+let GlobalVue = null;
 if (typeof window !== 'undefined') {
   GlobalVue = window.Vue
 } else if (typeof global !== 'undefined') {
