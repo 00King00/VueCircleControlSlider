@@ -32,6 +32,7 @@ export default{
         //*...other components...*//
         VueCircleControlSlider //local registration in your component
     }
+}
 </script>
 ```
 ## Functionality
