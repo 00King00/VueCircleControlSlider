@@ -1,9 +1,9 @@
 import VueCircleControlSlider from "./VueCircleControlSlider.vue";
 
 // Install the components
-export function install (Vue){
-    Vue.component('VueCircleControlSlider', VueCircleControlSlider);
-}
+// export function install (Vue){
+//     Vue.component('VueCircleControlSlider', VueCircleControlSlider);
+// }
 
 // Expose the components
 export default VueCircleControlSlider;
