@@ -6,6 +6,7 @@
     "email": "mr.1bilous@gmail.com"
   },
   "version": "1.0.1",
+  "license": "MIT",
   "keywords": [
     "vue",
     "vuejs",
