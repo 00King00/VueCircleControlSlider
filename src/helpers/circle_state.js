@@ -26,7 +26,7 @@ export default class CircleState {
       const corectAngle = this.angleUnit *  this.currentStepIndex;
       return corectAngle > 360 ? 360-0.05001 : corectAngle
     }
-    converAngleToValue(angle){ return angle >=358 ? this.lastStep : this.stepsArray[Math.ceil(angle/(this.angleUnit))] }
+    converAngleToValue(angle){ return angle >=358 ? this.lastStep : this.stepsArray[Math.floor(angle/(this.angleUnit))] }
     getPositionX(angle){ return this.center + this.radius*Math.cos((angle+this.offset)*this.convertedDegreesToRadians) - 0.00001 }
     getPositionY(angle){ return this.center + this.radius*Math.sin((angle+this.offset)*this.convertedDegreesToRadians) - 0.00001 }
   
