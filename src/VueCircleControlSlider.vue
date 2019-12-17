@@ -98,8 +98,12 @@ export default {
       while(await new Promise (resolve => {
         setTimeout(()=>{
             if(from < to){
-              resolve(from++)
-            }else{resolve(from--)}
+              resolve(from)
+              from += this.stepSize
+            }else{
+              resolve(from) 
+              from-= this.stepSize
+            }
            
         }, ms/this.stepsCount)
       }) !== to){

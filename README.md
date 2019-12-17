@@ -1,6 +1,6 @@
 # VueCircleControlSlider
 
-[![](https://img.shields.io/badge/vue-2.x-success)](https://vuejs.org/) ![](https://img.shields.io/badge/npm-v%206.4.1-green) ![](https://img.shields.io/badge/release-v%201.0.3-blue) [![](https://img.shields.io/badge/License-MIT-orange)](http://opensource.org/licenses/MIT)
+[![](https://img.shields.io/badge/vue-2.x-success)](https://vuejs.org/) ![](https://img.shields.io/badge/npm-v%206.4.1-green) ![](https://img.shields.io/badge/release-v%201.0.4-blue) [![](https://img.shields.io/badge/License-MIT-orange)](http://opensource.org/licenses/MIT)
 
 It is Circle Control Slider component for Vue.js based on SVG view.
 
