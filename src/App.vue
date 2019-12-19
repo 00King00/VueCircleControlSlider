@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-   <vue-circle-control-slider @value="updatedVal" :value="val" />
+   <vue-circle-control-slider @value="updatedVal" :value="val"  progressColor="green" knobBorderColor="red"/>
    <h2>{{value}}</h2>
    <input type="range" v-model.number="val">
   </div>

@@ -9,7 +9,7 @@
         <circle :stroke="circleColor" fill="none" :stroke-width="circleWidth" :cx="cpCenter" :cy="cpCenter" :r="radius"></circle>
         <text v-if="dial" x="50%" y="50%" :font-size="dialFontSize" :fill="dialTextColor" alignment-baseline="middle" text-anchor="middle"  stroke-width="0" >{{valueReflect+sign}}</text>
         <path :stroke="progressColor" fill="none" :stroke-width="progressWidth" :d="cpPathD"></path>
-        <circle  v-if="!offKnob" :fill="knobColor" :r="cpKnobRadius" :cx="cpPathX+circleSiftX" :cy="cpPathY+circleSiftY"  :stroke="cpKnobBorderColor" :stroke-width="knobBorderWith" ></circle>
+        <circle  v-if="!offKnob" :fill="cpKnobColor" :r="cpKnobRadius" :cx="cpPathX+circleSiftX" :cy="cpPathY+circleSiftY"  :stroke="cpKnobBorderColor" :stroke-width="knobBorderWith" ></circle>
         <text v-if="!offKnobNumber&&!offKnob" :fill="knobTextColor" font-size="20" :x="cpPathX - shiftX" :y="cpPathY + 7" class="knob-text">{{valueReflect}}</text> 
       </g>
     </svg>
@@ -59,14 +59,15 @@ export default {
   },
   mounted () {
     this.updateInMounted()
-    if(this.offKnobNumber){
-        this.knobColor = this.progressColor;
-        this.knobBorderColor = this.progressColor;
-        this.knobRadius = 12;
-      }
-     
   },
   computed: {
+    cpKnobColor(){
+      if(this.knobColor == 'white' && !this.offKnobNumber){
+        return this.knobColor;
+      } else if (this.knobColor == 'white'  && this.offKnobNumber){
+        return this.progressColor
+        }else{return this.knobColor}
+    },
     cpKnobBorderColor(){ return this.knobBorderColor !== '#2196F3' ? this.knobBorderColor : this.progressColor; },
     shiftX(){ return this.valueReflect >= 100 ? 17 : this.valueReflect > 9 ? 11 : 6 },
     circleSiftX(){ return this.valueReflect == 5  ? 1 : this.valueReflect == 15 ? -1 :0 },
@@ -141,21 +142,6 @@ export default {
       this.updateInCreated()
       this.updateInMounted()
     },
-    offKnobNumber(v){
-        if(v === true){
-        this.knobColor = this.progressColor;
-        this.knobBorderColor = this.progressColor;
-        this.knobRadius = 12;
-      }else {
-        this.knobRadius = 18;
-        this.knobColor = 'white'
-      }
-    },
-    progressColor(v){
-      if(this.offKnobNumber)
-       this.knobColor = v;
-       this.knobBorderColor = v;
-    }  
   }
 }
 </script>

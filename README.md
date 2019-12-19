@@ -1,6 +1,6 @@
 # VueCircleControlSlider
 
-[![](https://img.shields.io/badge/vue-2.x-success)](https://vuejs.org/) ![](https://img.shields.io/badge/npm-v%206.4.1-green) ![](https://img.shields.io/badge/release-v%201.0.4-blue) [![](https://img.shields.io/badge/License-MIT-orange)](http://opensource.org/licenses/MIT)
+[![](https://img.shields.io/badge/vue-2.x-success)](https://vuejs.org/) ![](https://img.shields.io/badge/npm-v%206.4.1-green) ![](https://img.shields.io/badge/release-v%201.0.5-blue) [![](https://img.shields.io/badge/License-MIT-orange)](http://opensource.org/licenses/MIT)
 
 It is Circle Control Slider component for Vue.js based on SVG view.
 
@@ -42,6 +42,7 @@ export default{
 - defining step size
 - animation while updating to new value on click by circle
 - touch devices support (`touchmove`)
+- available disabled events
 - sizes customization: exact and relative definitions
 - colors customization
 
@@ -91,24 +92,21 @@ or customize some properties:
 | offKnobNumber    | Boolean       | false    | remove value in circle knob |
 | knobColor        | String        | `white`  | set knob color |
 | knobTextColor    | String        | `black`  | set knob text color |
-| knobBorderColor  | String        | `#2196F3`| knob border color just sets the same color as progressColor |
+| knobBorderColor  | String        | `#2196F3`| knob border color |
 | knobBorderWith   | Number        | 3        | set knob border with in px |
 | knobRadius       | Number        | 18       | set knob radius in px |
-| progressWidth    | Number        | 8        | set width of circle progress |
+| progressWidth    | Number        | 8        | set width of circle progress in px |
 | progressColor    | Number        | `#2196F3`| set color of circle progress curve |
-| circleWidth      | Number        | 6        | set width of circle |
+| circleWidth      | Number        | 6        | set width of circle border in px |
 | circleColor      | String        | `#9E9E9E`| set border color of circle |
 | stepSize         | Number        | 1        | set the gap between the values |
 | disabled         | Boolean       | false    | desabled events |
 
 
 ### Slots
-
 There is no any slots available
-
-
 ## Demo
-
+- [Demo line](https://vue-circle-control-slider.firebaseapp.com)
 - [Git sources](https://github.com/00King00/VueCircleControlSlider)
 
 ## License
