@@ -106,7 +106,7 @@ or customize some properties:
 ### Slots
 There is no any slots available
 ## Demo
-- [Demo line](https://vue-circle-control-slider.firebaseapp.com)
+- [Demo live](https://vue-circle-control-slider.firebaseapp.com)
 - [Git sources](https://github.com/00King00/VueCircleControlSlider)
 
 ## License
