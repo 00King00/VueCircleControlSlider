@@ -9,7 +9,7 @@
         <circle :stroke="circleColor" fill="none" :stroke-width="circleWidth" :cx="cpCenter" :cy="cpCenter" :r="radius"></circle>
         <text v-if="dial" x="50%" y="50%" :font-size="dialFontSize" :fill="dialTextColor" alignment-baseline="middle" text-anchor="middle"  stroke-width="0" >{{valueReflect+sign}}</text>
         <path :stroke="progressColor" fill="none" :stroke-width="progressWidth" :d="cpPathD"></path>
-        <circle  v-if="!offKnob" :fill="cpKnobColor" :r="cpKnobRadius" :cx="cpPathX+circleSiftX" :cy="cpPathY+circleSiftY"  :stroke="cpKnobBorderColor" :stroke-width="knobBorderWith" ></circle>
+        <circle  v-if="!offKnob" :fill="cpKnobColor" :r="cpKnobRadius" :cx="cpPathX+circleSiftX" :cy="cpPathY+circleSiftY"  :stroke="cpKnobBorderColor" :stroke-width="knobBorderWidth" ></circle>
         <text v-if="!offKnobNumber&&!offKnob" :fill="knobTextColor" font-size="20" :x="cpPathX - shiftX" :y="cpPathY + 7" class="knob-text">{{valueReflect}}</text> 
       </g>
     </svg>
@@ -36,7 +36,7 @@ export default {
     dial:{ type: Boolean, required: false, default: false },
     sign:{ type: String, required: false, default: "" },
     dialFontSize:{ type: Number, required: false, default: 50 },
-    knobBorderWith:{ type: Number, required: false, default: 3 },
+    knobBorderWidth:{ type: Number, required: false, default: 3 },
     offKnobNumber:{ type: Boolean, required: false, default: false },
     startAngleOffset: { type: Number, required: false, default: 90 },
     value: { type: Number, required: false, default: 0},

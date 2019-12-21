@@ -1,6 +1,6 @@
 # VueCircleControlSlider
 
-[![](https://img.shields.io/badge/vue-2.x-success)](https://vuejs.org/) ![](https://img.shields.io/badge/npm-v%206.4.1-green) ![](https://img.shields.io/badge/release-v%201.0.5-blue) [![](https://img.shields.io/badge/License-MIT-orange)](http://opensource.org/licenses/MIT)
+[![](https://img.shields.io/badge/vue-2.x-success)](https://vuejs.org/) ![](https://img.shields.io/badge/npm-v%206.4.1-green) ![](https://img.shields.io/badge/release-v%201.0.6-blue) [![](https://img.shields.io/badge/License-MIT-orange)](http://opensource.org/licenses/MIT) [![](https://img.shields.io/badge/author-page-orange)](https://mr-bilous.firebaseapp.com/)
 
 It is Circle Control Slider component for Vue.js based on SVG view.
 
@@ -90,13 +90,13 @@ or customize some properties:
 | startAngleOffset | Number        | 90       | set angle offset |
 | offKnob          | Boolean       | false    | remove circle knob |
 | offKnobNumber    | Boolean       | false    | remove value in circle knob |
-| knobColor        | String        | `white`  | set knob color |
+| knobColor        | String        | `white`  | set knob color (unless explicitly stated, the props is the same as progressColor ) |
 | knobTextColor    | String        | `black`  | set knob text color |
-| knobBorderColor  | String        | `#2196F3`| knob border color |
-| knobBorderWith   | Number        | 3        | set knob border with in px |
+| knobBorderColor  | String        | `#2196F3`| knob border color (unless explicitly stated, the props is the same as progressColor ) |
+| knobBorderWidth  | Number        | 3        | set knob border with in px |
 | knobRadius       | Number        | 18       | set knob radius in px |
 | progressWidth    | Number        | 8        | set width of circle progress in px |
-| progressColor    | Number        | `#2196F3`| set color of circle progress curve |
+| progressColor    | String        | `#2196F3`| set color of circle progress curve |
 | circleWidth      | Number        | 6        | set width of circle border in px |
 | circleColor      | String        | `#9E9E9E`| set border color of circle |
 | stepSize         | Number        | 1        | set the gap between the values |
@@ -106,7 +106,7 @@ or customize some properties:
 ### Slots
 There is no any slots available
 ## Demo
-- [Demo live](https://vue-circle-control-slider.firebaseapp.com)
+- [Live Demo](https://vue-circle-control-slider.firebaseapp.com)
 - [Git sources](https://github.com/00King00/VueCircleControlSlider)
 
 ## License
