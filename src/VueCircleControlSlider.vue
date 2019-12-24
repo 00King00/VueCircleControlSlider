@@ -96,6 +96,7 @@ export default {
     },
     updateInMounted(){ this.touchPosition = new TouchPosition(this.$refs._svg, this.radius, this.radius/2, this.startAngleOffset) },
     async animate(from, to, ms=500){
+      
       while(await new Promise (resolve => {
         setTimeout(()=>{
             if(from < to){
