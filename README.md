@@ -80,26 +80,27 @@ or customize some properties:
 | Props            | Type          | Default  | Description  |
 | ---------------- |:--------------| ---------|--------------|
 | value            | Number        | 0        | init start value |
-| size             | Number        | 200      | set svg width & heigth |
+| size             | Number        | 200      | sets svg width & heigth |
 | dial             | Boolean       | false    | show value inside circle center |
-| dialTextColor    | String        | `black`  | set color of dial value inside circle center |
-| dialFontSize     | Number        | 50       | set font-size of dial
+| dialTextColor    | String        | `black`  | sets color of dial value inside circle center |
+| dialFontSize     | Number        | 50       | sets font-size of dial
 | sign             | String        | `""`     | add sign to the end value row inside circle center for exampe it's `"%"` add persent sign |
-| min              | Number        | 0        | set the minimum value |
-| max              | Number        | 100      | set the maximum value |
-| startAngleOffset | Number        | 90       | set angle offset |
+| min              | Number        | 0        | sets the minimum value |
+| max              | Number        | 100      | sets the maximum value |
+| startAngleOffset | Number        | 90       | sets angle offset |
 | offKnob          | Boolean       | false    | remove circle knob |
 | offKnobNumber    | Boolean       | false    | remove value in circle knob |
-| knobColor        | String        | `white`  | set knob color (unless explicitly stated, the props is the same as progressColor ) |
-| knobTextColor    | String        | `black`  | set knob text color |
+| knobColor        | String        | `white`  | sets knob color (unless explicitly stated, the props is the same as progressColor ) |
+| knobTextColor    | String        | `black`  | sets knob text color |
 | knobBorderColor  | String        | `#2196F3`| knob border color (unless explicitly stated, the props is the same as progressColor ) |
-| knobBorderWidth  | Number        | 3        | set knob border with in px |
-| knobRadius       | Number        | 18       | set knob radius in px |
-| progressWidth    | Number        | 8        | set width of circle progress in px |
-| progressColor    | String        | `#2196F3`| set color of circle progress curve |
-| circleWidth      | Number        | 6        | set width of circle border in px |
-| circleColor      | String        | `#9E9E9E`| set border color of circle |
-| stepSize         | Number        | 1        | set the gap between the values |
+| knobBorderWidth  | Number        | 3        | sets knob border with in px |
+| knobRadius       | Number        | 18       | sets knob radius in px |
+| progressWidth    | Number        | 8        | sets width of circle progress in px |
+| progressColor    | String        | `#2196F3`| sets color of circle progress curve |
+| circleWidth      | Number        | 6        | sets width of circle border in px |
+| circleColor      | String        | `#9E9E9E`| sets border color of circle |
+| stepSize         | Number        | 1        | sets the gap between the values |
+| ms               | Number        | 500      | sets the duration of the animation |
 | disabled         | Boolean       | false    | desabled events |
 
 

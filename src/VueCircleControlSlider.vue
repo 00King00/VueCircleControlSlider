@@ -95,22 +95,44 @@ export default {
       this.circleState = new CircleState(this.steps, this.value, this.radius, this.size/2, this.startAngleOffset)
     },
     updateInMounted(){ this.touchPosition = new TouchPosition(this.$refs._svg, this.radius, this.radius/2, this.startAngleOffset) },
-    async animate(from, to, ms=500){
-      
-      while(await new Promise (resolve => {
-        setTimeout(()=>{
+    animate(from, to, ms=500){
+      //let start = performance.now();
+
+       let stepAnimation =  async()=>{
+         while(await new Promise (resolve => {
+           setTimeout(()=>{
             if(from < to){
               resolve(from)
               from += this.stepSize
             }else{
               resolve(from) 
               from-= this.stepSize
-            }
-           
-        }, ms/this.stepsCount)
-      }) !== to){
-        this.valueReflect = from
+            }    
+          }, ms/this.stepsCount)
+        }) !== to){
+          
+          this.valueReflect = from
+        }
       }
+        
+      requestAnimationFrame(stepAnimation)
+
+      // while(await new Promise (resolve => {
+      //   setTimeout(()=>{
+      //       if(from < to){
+      //         resolve(from)
+      //         from += this.stepSize
+      //       }else{
+      //         resolve(from) 
+      //         from-= this.stepSize
+      //       }
+      //   }, ms/this.stepsCount)
+      // }) !== to){
+      //   this.valueReflect = from
+      // }
+
+      // let end = performance.now();
+      // console.log('Perfomance ', end-start);
     },
     updateValue(e){
       if (this.disabled) return false
