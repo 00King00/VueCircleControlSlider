@@ -1,114 +1,228 @@
 # VueCircleControlSlider
 
-[![](https://img.shields.io/badge/vue-2.x-success)](https://vuejs.org/) ![](https://img.shields.io/badge/npm-v%206.4.1-green) ![](https://img.shields.io/badge/release-v%201.0.7-red) [![](https://img.shields.io/badge/License-MIT-orange)](http://opensource.org/licenses/MIT) [![](https://img.shields.io/badge/author-page-blue)](https://mr-bilous.firebaseapp.com/)
+[![](https://img.shields.io/badge/vue-2.x-success)](https://vuejs.org/) ![](https://img.shields.io/badge/release-v%201.1.0-red) [![](https://img.shields.io/badge/License-MIT-orange)](http://opensource.org/licenses/MIT) [![](https://img.shields.io/badge/author-page-blue)](https://mr-bilous.firebaseapp.com/)
 
-It is Circle Control Slider component for Vue.js based on SVG view.
+Circle Control Slider component for Vue.js based on SVG.
+
+> **Note:** This package targets **Vue 2.x** (tested on Vue 2.7). Vue 3 support is planned for a future major release.
 
 ## Table of contents
 
 - [Installation](#installation)
 - [Usage](#usage)
+- [Props](#props)
+- [Events](#events)
+- [Slots](#slots)
+- [Examples](#examples)
 - [Demo](#demo)
 
 ## Installation
-```
+
+```bash
 npm install --save vue-circle-control-slider
 ```
+
 ## Usage
-### adding into main.js (global registration)
+
+### Global registration (main.js)
+
 ```javascript
-import Vue from 'vue'
-import VueCircleControlSlider from 'vue-circle-control-slider'
-import 'vue-circle-control-slider/dist/VueCircleControlSlider.css'
-Vue.component('VueCircleControlSlider', VueCircleControlSlider); //global registration
+import Vue from 'vue';
+import VueCircleControlSlider from 'vue-circle-control-slider';
+import 'vue-circle-control-slider/dist/VueCircleControlSlider.css';
+
+Vue.component('VueCircleControlSlider', VueCircleControlSlider);
 ```
-### or adding into your vue component (local registration)
+
+### Local registration (inside component)
+
 ```html
 <script>
-import VueCircleControlSlider from 'vue-circle-control-slider'
-export default{
-    //*...some code...*//
+import VueCircleControlSlider from 'vue-circle-control-slider';
+import 'vue-circle-control-slider/dist/VueCircleControlSlider.css';
+
+export default {
     components: {
-        //*...other components...*//
-        VueCircleControlSlider //local registration in your component
-    }
-}
+        VueCircleControlSlider,
+    },
+};
 </script>
 ```
-## Functionality
-- svg based view
-- 2 way binding data value 
-- defining min & max values
-- defining step size
-- animation while updating to new value on click by circle
-- touch devices support (`touchmove`)
-- available disabled events
-- sizes customization: exact and relative definitions
-- colors customization
+
+## Features
+
+- SVG-based rendering (scales perfectly, no canvas)
+- Two-way binding via `v-model` (emits `input` event)
+- Configurable `min`, `max`, `stepSize`
+- Smooth animation on click (with `requestAnimationFrame`)
+- Touch device support (`touchmove`)
+- Disabled state
+- Full size and color customization
+- Default slot for custom center content (icons, labels, progress text)
+
+## Props
+
+| Prop             | Type    | Default     | Description                                                                               |
+| ---------------- | ------- | ----------- | ----------------------------------------------------------------------------------------- |
+| `value`          | Number  | `0`         | Current value (use with `v-model` or `:value` + `@input`)                                 |
+| `size`           | Number  | `200`       | SVG width & height in px                                                                  |
+| `min`            | Number  | `0`         | Minimum value                                                                             |
+| `max`            | Number  | `100`       | Maximum value                                                                             |
+| `stepSize`       | Number  | `1`         | Gap between discrete values                                                               |
+| `ms`             | Number  | `500`       | Click-animation duration in ms                                                            |
+| `startAngleOffset` | Number | `90`       | Angle offset in degrees (where `0` starts on the circle)                                  |
+| `disabled`       | Boolean | `false`    | Disable click / touch / mouse interactions                                                |
+| `dial`           | Boolean | `false`    | Show current value in the center of the circle                                            |
+| `dialTextColor`  | String  | `'black'`  | Color of dial text                                                                        |
+| `dialFontSize`   | Number  | `50`       | Font-size of dial text                                                                    |
+| `sign`           | String  | `''`       | Suffix appended to dial value (e.g. `'%'`)                                                |
+| `circleColor`    | String  | `'#9E9E9E'` | Color of the background circle                                                            |
+| `circleWidth`    | Number  | `6`        | Stroke width of the background circle                                                     |
+| `progressColor`  | String  | `'#2196F3'` | Color of the progress arc                                                                 |
+| `progressWidth` | Number   | `8`        | Stroke width of the progress arc                                                          |
+| `offKnob`        | Boolean | `false`    | Hide the knob entirely                                                                    |
+| `offKnobNumber`  | Boolean | `false`    | Hide the number inside the knob                                                           |
+| `knobColor`      | String  | `'white'`  | Knob fill color (auto switches to `progressColor` when `offKnobNumber=true` and default)  |
+| `knobBorderColor` | String | `'#2196F3'` | Knob border color (defaults to `progressColor` unless explicitly set)                    |
+| `knobBorderWidth` | Number | `3`        | Knob border width in px                                                                   |
+| `knobTextColor`  | String  | `'black'`  | Color of the number inside the knob                                                       |
+| `knobRadius`     | Number  | `18`       | Knob radius in px                                                                         |
+
+> ⚠️ **Migrating from earlier builds?** The prop name is `knobBorderWidth` (not `knobBorderWith`). If you ever saw the typo version, it is fixed in v1.1.0+.
+
+## Events
+
+| Event   | Payload | Description                                                           |
+| ------- | ------- | --------------------------------------------------------------------- |
+| `input` | Number  | Emitted when value changes — enables `v-model` out of the box         |
+| `value` | Number  | Legacy event, same payload as `input`. Kept for backward compatibility |
+
+## Slots
+
+| Slot    | Description                                                                                          |
+| ------- | ---------------------------------------------------------------------------------------------------- |
+| default | Rendered inside `.box-svg` wrapper, on top of the SVG. Useful for icons, labels, or extra overlays.  |
 
 ## Examples
 
-When you have been register component with name `VueCircleControlSlider` so you can just use it right away:
+### Basic with v-model
 
 ```html
-...
-<vue-circle-control-slider :value="pushSomeValue"/>
-<vue-circle-control-slider @value="receiveSomeValue"/>
-...
+<template>
+    <vue-circle-control-slider v-model="volume" />
+</template>
+
+<script>
+export default {
+    data() {
+        return { volume: 50 };
+    },
+};
+</script>
 ```
-or customize some properties:
+
+### Legacy event style (still supported)
+
 ```html
-...
+<vue-circle-control-slider :value="volume" @value="onChange" />
+```
+
+### Customized appearance
+
+```html
 <vue-circle-control-slider
-  :size="300"
-  :min="0"
-  :max="100"
-  circleColor="black"
-  progressColor="red"
-  :knobRadius="20"
-  :progressWidth="10"
-  dial
-  sign="%"
-  dialTextColor="red"
+    :size="300"
+    :min="0"
+    :max="100"
+    circleColor="black"
+    progressColor="red"
+    :knobRadius="20"
+    :progressWidth="10"
+    dial
+    sign="%"
+    dialTextColor="red"
 />
-...
 ```
 
-## Interface
-### Props
+### Using the default slot — download progress
 
-| Props            | Type          | Default  | Description  |
-| ---------------- |:--------------| ---------|--------------|
-| value            | Number        | 0        | init start value |
-| size             | Number        | 200      | sets svg width & heigth |
-| dial             | Boolean       | false    | show value inside circle center |
-| dialTextColor    | String        | `black`  | sets color of dial value inside circle center |
-| dialFontSize     | Number        | 50       | sets font-size of dial
-| sign             | String        | `""`     | add sign to the end value row inside circle center for exampe it's `"%"` add persent sign |
-| min              | Number        | 0        | sets the minimum value |
-| max              | Number        | 100      | sets the maximum value |
-| startAngleOffset | Number        | 90       | sets angle offset |
-| offKnob          | Boolean       | false    | remove circle knob |
-| offKnobNumber    | Boolean       | false    | remove value in circle knob |
-| knobColor        | String        | `white`  | sets knob color (unless explicitly stated, the props is the same as progressColor ) |
-| knobTextColor    | String        | `black`  | sets knob text color |
-| knobBorderColor  | String        | `#2196F3`| knob border color (unless explicitly stated, the props is the same as progressColor ) |
-| knobBorderWidth  | Number        | 3        | sets knob border with in px |
-| knobRadius       | Number        | 18       | sets knob radius in px |
-| progressWidth    | Number        | 8        | sets width of circle progress in px |
-| progressColor    | String        | `#2196F3`| sets color of circle progress curve |
-| circleWidth      | Number        | 6        | sets width of circle border in px |
-| circleColor      | String        | `#9E9E9E`| sets border color of circle |
-| stepSize         | Number        | 1        | sets the gap between the values |
-| ms               | Number        | 500      | sets the duration of the animation |
-| disabled         | Boolean       | false    | desabled events |
+Use the slot to render custom content (e.g. a download-progress label) on top of the slider:
 
+```html
+<template>
+    <vue-circle-control-slider
+        v-model="progress"
+        :size="220"
+        :min="0"
+        :max="100"
+        offKnob
+        dial
+        sign="%"
+        progressColor="#4caf50"
+        circleColor="#e0e0e0"
+    >
+        <div class="download-overlay">
+            <small>Downloading</small>
+            <strong>{{ fileName }}</strong>
+        </div>
+    </vue-circle-control-slider>
+</template>
 
-### Slots
-There is no any slots available
+<script>
+export default {
+    data() {
+        return {
+            progress: 0,
+            fileName: 'archive.zip',
+        };
+    },
+    mounted() {
+        const interval = setInterval(() => {
+            this.progress += 1;
+            if (this.progress >= 100) clearInterval(interval);
+        }, 80);
+    },
+};
+</script>
+
+<style scoped>
+.download-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    padding-bottom: 12px;
+    pointer-events: none;
+    font-family: sans-serif;
+}
+.download-overlay small {
+    opacity: 0.6;
+}
+</style>
+```
+
+> Tip: The wrapper `.box-svg` has `position: relative`, so absolutely-positioned slot content lines up with the SVG center without extra setup.
+
 ## Demo
+
 - [Live Demo](https://vue-circle-control-slider.firebaseapp.com)
 - [Git sources](https://github.com/00King00/VueCircleControlSlider)
+
+## Changelog
+
+### 1.1.0
+- ✨ Added default `<slot>` for custom center content
+- ✨ Emits `input` event for `v-model` support (legacy `value` event kept)
+- 🐛 Fixed `knobBorderWidth` prop (was accidentally renamed to `knobBorderWith` in some builds)
+- 🐛 Fixed `@touchmove` handler (was `@tochmove` — touch never worked before)
+- 🐛 Added cleanup of global mouse listeners on component destroy
+- 🐛 Guard against overlapping click-animations
+- 🐛 `offKnob=true` now computes radius without reserving knob space
+- 🔧 Migrated build system from `vue-cli-service` to Vite 5
+- 🔧 Upgraded Sass from deprecated `node-sass` to Dart `sass`
+- 🔧 Vue bumped to 2.7
 
 ## License
 
