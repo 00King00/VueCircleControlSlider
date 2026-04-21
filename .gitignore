@@ -2,6 +2,7 @@
 node_modules
 /dist
 .mcp.json
+.playwright-mcp/
 
 # local env files
 .env.local
