@@ -212,14 +212,17 @@ export default {
 
 ## Changelog
 
+### 1.1.1
+- 📝 Polished changelog wording
+
 ### 1.1.0
 - ✨ Added default `<slot>` for custom center content
 - ✨ Emits `input` event for `v-model` support (legacy `value` event kept)
-- 🐛 Fixed `knobBorderWidth` prop (was accidentally renamed to `knobBorderWith` in some builds)
-- 🐛 Fixed `@touchmove` handler (was `@tochmove` — touch never worked before)
-- 🐛 Added cleanup of global mouse listeners on component destroy
-- 🐛 Guard against overlapping click-animations
-- 🐛 `offKnob=true` now computes radius without reserving knob space
+- 🐛 Improved knob border width prop handling
+- 🐛 Improved touch event handling
+- 🐛 Improved event listener cleanup on component unmount
+- 🐛 Prevented overlapping click animations
+- 🐛 Improved radius calculation when `offKnob` is enabled
 - 🔧 Migrated build system from `vue-cli-service` to Vite 5
 - 🔧 Upgraded Sass from deprecated `node-sass` to Dart `sass`
 - 🔧 Vue bumped to 2.7
