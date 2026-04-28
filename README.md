@@ -1,8 +1,14 @@
 # VueCircleControlSlider
 
-[![](https://img.shields.io/badge/vue-2.x-success)](https://vuejs.org/) ![](https://img.shields.io/badge/release-v%201.1.0-red) [![](https://img.shields.io/badge/License-MIT-orange)](http://opensource.org/licenses/MIT) [![](https://img.shields.io/badge/author-page-blue)](https://mr-bilous.firebaseapp.com/)
+[![NPM Version](https://img.shields.io/npm/v/vue-circle-control-slider.svg)](https://www.npmjs.com/package/vue-circle-control-slider)
+[![NPM Downloads](https://img.shields.io/npm/dm/vue-circle-control-slider.svg)](https://www.npmjs.com/package/vue-circle-control-slider)
+[![Vue 2.x](https://img.shields.io/badge/vue-2.x-success)](https://vuejs.org/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-orange.svg)](http://opensource.org/licenses/MIT)
+[![Live Demo](https://img.shields.io/badge/demo-live-brightgreen)](https://vue-circle-control-slider.firebaseapp.com/)
 
 Circle Control Slider component for Vue.js based on SVG.
+
+🎮 **[Try the Live Demo →](https://vue-circle-control-slider.firebaseapp.com/)**
 
 > **Note:** This package targets **Vue 2.x** (tested on Vue 2.7). Vue 3 support is planned for a future major release.
 
@@ -207,8 +213,8 @@ export default {
 
 ## Demo
 
-- [Live Demo](https://vue-circle-control-slider.firebaseapp.com)
-- [Git sources](https://github.com/00King00/VueCircleControlSlider)
+- [Live Demo](https://vue-circle-control-slider.firebaseapp.com/)
+- [GitHub repository](https://github.com/vasyl-bilous/VueCircleControlSlider)
 
 ## Changelog
 
